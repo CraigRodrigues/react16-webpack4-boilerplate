@@ -9,6 +9,7 @@ const htmlWebPackPlugin = new HtmlWebPackPlugin({
 module.exports = {
     entry: './src/index.js',
     devServer: { contentBase: './dist' },
+    mode: 'development',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
@@ -22,7 +23,7 @@ module.exports = {
             },
             {
                 test: /\.(css)$/,
-                use: [ 'css-loader', 'style-loader' ]
+                use: [ 'style-loader', 'css-loader' ]
             },
             {
                 test: /\.html$/,
