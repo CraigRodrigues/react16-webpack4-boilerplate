@@ -10,11 +10,14 @@ module.exports = {
     entry: './src/index.js',
     mode: 'development',
     devServer: {
-        contentBase: path.resolve(__dirname, 'dist')
+        contentBase: path.resolve(__dirname, 'dist'),
+        historyApiFallback: true,
+        publicPath: '/src/'
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/src/'
     },
     module: {
         rules: [
@@ -30,12 +33,16 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: [
-                  {
-                    loader: "html-loader",
-                    options: { minimize: true }
-                  }
+                    {
+                        loader: "html-loader",
+                        options: { minimize: true }
+                    }
                 ]
-              }
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [ 'file-loader' ]
+            }
         ]
     },
     resolve: {
